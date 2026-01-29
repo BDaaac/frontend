@@ -1,34 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Декларативное состояние: описываем что хотим (isHighlighted: true/false)
+  // вместо того как это делать (addClass/removeClass)
+  const [isHighlighted, setIsHighlighted] = useState(false)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>Lab 1.1: Declarative Implementation (React)</h1>
+      
+      {/* React автоматически применяет className при изменении состояния */}
+      <p className={isHighlighted ? 'highlight' : ''}>
+        This is the text to highlight.
       </p>
-    </>
+      
+      {/* Обработчик меняет состояние, React обновляет UI автоматически */}
+      <button onClick={() => setIsHighlighted(!isHighlighted)}>
+        Toggle Highlight
+      </button>
+
+      <div style={{ marginTop: '30px', fontSize: '14px', color: '#666' }}>
+        <p>Текущее состояние: {isHighlighted ? 'Выделено' : 'Не выделено'}</p>
+        <p>React declarative: описываем "что" хотим видеть, не "как" это сделать</p>
+      </div>
+    </div>
   )
 }
 
