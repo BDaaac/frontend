@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 1.1</title>
+        <script src ="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <style>
+            .highlight { background-color: yellow;}
+        </style>
+    </head>
+    <body>
+        <button id="toggle-btn">Toggle Highlight</button> <p id="text-para"> This is the text to highlight.</p>
+        <script>
+            $(document).ready(function(){
+                $("#toggle-btn").click(function(){
+                    $("#text-para").toggleClass("highlight");
+                });
+            });
+        </script>
+    </body>
+</html>
