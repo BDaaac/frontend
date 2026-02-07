@@ -1,0 +1,62 @@
+/* Стили для лабораторной работы 4.1 */
+
+.registration-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #242424; /* Темная тема под стать Vite */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: left; /* Чтобы заголовки и ошибки были слева */
+}
+
+.registration-container h2 {
+  text-align: center;
+  color: #646cff;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1.5px solid #444;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+/* Стили для ошибок и успеха */
+.error-text {
+  color: #ff4d4d;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.success-message {
+  background-color: rgba(75, 181, 67, 0.1);
+  color: #4bb543;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1rem;
+  border: 1px solid #4bb543;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: 600;
+}
