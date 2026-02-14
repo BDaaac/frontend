@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Lab 5.1 — TypeScript & Props Validation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates typed React components using TypeScript interfaces, union types, and typed props.
 
-Currently, two official plugins are available:
+## Defined types
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Types are stored in `src/types.ts`:
 
-## React Compiler
+- `User` interface:
+  - `name: string`
+  - `email: string`
+  - `age: number`
+- `SkillLevel` union type:
+  - `'Beginner' | 'Intermediate' | 'Expert'`
+- `Skill` interface:
+  - `id: number`
+  - `name: string`
+  - `level: SkillLevel`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Components
 
-## Expanding the ESLint configuration
+- `UserCard.tsx`
+  - Uses `UserCardProps` interface
+  - Includes optional prop `isActive?: boolean` with default value
+  - Uses typed `children: ReactNode`
+- `SkillList.tsx`
+  - Uses `SkillListProps` with typed array `skills: Skill[]`
+  - Renders skills with `.map(...)`
+  - Applies conditional color styling based on `SkillLevel`
+- `App.tsx`
+  - Imports and renders `UserCard` and `SkillList`
+  - Provides sample typed data for `User` and `Skill[]`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Run
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## TypeScript
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Strict mode is enabled in TypeScript configuration.
+- Project compiles with zero TypeScript errors.
