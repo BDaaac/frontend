@@ -1,38 +1,39 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { courses } from "./data";
+import './App.css';
 
 function Courses() {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOrder = searchParams.get("sort") || "asc";
 
-  const sorted = [...courses].sort((a, b) =>
-    sortOrder === "desc"
-      ? b.title.localeCompare(a.title)
-      : a.title.localeCompare(b.title)
-  );
+  const sortedCourses = [...courses].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b.title.localeCompare(a.title);
+    }
+  });
 
-  const toggleSort = () => {
-    setSearchParams({
-      sort: sortOrder === "asc" ? "desc" : "asc",
-    });
+  const toggleSortOrder = () => {
+    setSearchParams({ sort: sortOrder === "asc" ? "desc" : "asc" });
   };
 
   return (
-    <>
-      <button onClick={toggleSort}>
-        Sort: {sortOrder.toUpperCase()}
+    <div className="courses-container">
+      <h2 className="courses-title">Our Courses</h2>
+      <button onClick={toggleSortOrder} className="sort-button">
+        Sort by Title ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
       </button>
-
-      <ul>
-        {sorted.map((course) => (
-          <li key={course.id}>
-            <Link to={`/courses/${course.id}`}>
+      <ul className="courses-list">
+        {sortedCourses.map((course) => (
+          <li key={course.id} className="course-item">
+            <Link to={`/courses/${course.id}`} className="course-link">
               {course.title}
             </Link>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 
