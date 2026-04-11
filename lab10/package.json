@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix testing-app run dev",
+    "build": "npm --prefix testing-app run build",
+    "test": "npm --prefix testing-app run test",
+    "lint": "npm --prefix testing-app run lint",
+    "preview": "npm --prefix testing-app run preview"
+  }
+}
